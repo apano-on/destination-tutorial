@@ -19,7 +19,7 @@ ENV PYSPARK_PYTHON=/usr/bin/python3
 WORKDIR /home
 
 COPY start.sh start.sh
-COPY getDestinationTurialDB.sql getDesinationTutorialDB.sql
+COPY getDestinationTutorialDB.sql getDestinationTutorialDB.sql
 
 RUN chmod +x start.sh
 
