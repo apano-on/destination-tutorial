@@ -1,3 +1,60 @@
+# NEW Destination tutorial for Ontop + Spark
+## 1. Clone this repository
+
+On Windows
+```sh
+git clone https://github.com/ontopic-vkg/destination-tutorial  --config core.autocrlf=input
+```
+
+Otherwise, on MacOS and Linux:
+```sh
+git clone https://github.com/ontopic-vkg/destination-tutorial
+```
+## 2. Start Docker-compose
+
+* Go to the `destination-tutorial` repository
+* Start the default Docker-compose services sequentially in 3 separate terminals
+
+```sh
+docker-compose up db
+```
+```sh
+docker-compose up spark
+```
+```sh
+docker-compose up ontop
+```
+
+These commands start and initialize the database, spark and ontop. Once the database is ready, the data is loaded by Spark, and then it launches the SPARQL endpoint from Ontop at http://localhost:8080 .
+
+For this tutorial, we assume that the ports 7777 (used for database), 8050/8051/7077/10000 (used by Spark) and 8080 (used by Ontop) are free. If you need to use different ports, please edit the file `.env`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Destination tutorial for Ontop
 
 This tutorial is adapted from [the Virtual Knowledge Graph](https://github.com/noi-techpark/it.bz.opendatahub.sparql) of the South Tyrolean [Open Data Hub](https://opendatahub.bz.it/).
