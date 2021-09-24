@@ -32,6 +32,10 @@ wget "https://search.maven.org/remotecontent?filepath=org/datasyslab/geotools-wr
 #COPY sedona-viz-3.0_2.12-1.0.1-incubating.jar /opt/spark/jars/sedona-viz-3.0_2.12-1.0.1-incubating.jar
 #COPY geotools-wrapper-geotools-24.0.jar /opt/spark/jars/geotools-wrapper-geotools-24.0.jar
 COPY spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+COPY postgresql-42.2.8.jar /opt/spark/jars/postgresql-42.2.8.jar
+
+RUN mkdir /opt/wait-for-it
+COPY wait-for-it/wait-for-it.sh /opt/wait-for-it/wait-for-it.sh
 
 EXPOSE 8050
 EXPOSE 8051

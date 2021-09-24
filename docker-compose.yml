@@ -11,6 +11,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres2
+
   spark:
     hostname: spark
     container_name: spark
@@ -20,20 +21,19 @@ services:
       - "8050:8050"  # Spark master
       - "8051:8051"  # Spark worker
       - "7078:7078"
-      - "10000:10000"  # ThriftSerevr JDBC endpoint
+      - "10000:10000"  # ThriftServer JDBC endpoint
     depends_on:
       - db
-    volumes:
-      - ./wait-for-it:/opt/wait-for-it
-    entrypoint:
-      [
-          "/opt/wait-for-it/wait-for-it.sh",
-          "db:5432",
-          "--timeout=0",
-          "--strict",
-          "--",
-          "/opt/ontop/entrypoint.sh",
-      ]
+#    volumes:
+#      - ./wait-for-it:/opt/wait-for-it
+#    entrypoint:
+#      [
+#          "/opt/wait-for-it/wait-for-it.sh",
+#          "db:5432",
+#          "--timeout=0",
+#          "--strict",
+#      ]
+
   ontop:
     image: ontop/ontop-endpoint:4.2-SNAPSHOT
     env_file: .env
@@ -53,7 +53,7 @@ services:
     entrypoint:
         [
           "/opt/wait-for-it/wait-for-it.sh",
-          "db:5432",
+          "spark:10000",
           "--timeout=0",
           "--strict",
           "--",
