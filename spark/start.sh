@@ -24,6 +24,7 @@ spark-sql \
 	--master spark://localhost:7077 \
 	--deploy-mode client  \
 	-f ./getDestinationTutorialDB.sql
+	# -f ./getDestinationTutorialDB-solution.sql
 
 start-thriftserver.sh \
 	--name THRIFTSERVER \

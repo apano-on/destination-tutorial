@@ -11,6 +11,29 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres2
+
+  spark:
+    hostname: spark
+    container_name: spark
+    build:
+      context: ./spark
+    ports:
+      - "8050:8050"  # Spark master
+      - "8051:8051"  # Spark worker
+      - "7078:7078"
+      - "10000:10000"  # ThriftServer JDBC endpoint
+    depends_on:
+      - db
+  #    volumes:
+  #      - ./wait-for-it:/opt/wait-for-it
+  #    entrypoint:
+  #      [
+  #          "/opt/wait-for-it/wait-for-it.sh",
+  #          "db:5432",
+  #          "--timeout=0",
+  #          "--strict",
+  #      ]
+
   ontop:
     image: ontop/ontop-endpoint:4.1.0
     env_file: .env
@@ -19,7 +42,7 @@ services:
       ONTOP_ONTOLOGY_FILE: /opt/ontop/input/dest-solution.ttl
       ONTOP_XML_CATALOG_FILE: /opt/ontop/input/catalog-v001.xml
       ONTOP_MAPPING_FILE: /opt/ontop/input/dest-solution.obda
-      ONTOP_PROPERTIES_FILE: /opt/ontop/input/dest.docker.properties
+      ONTOP_PROPERTIES_FILE: /opt/ontop/input/dest-spark.docker.properties
       ONTOP_PORTAL_FILE: /opt/ontop/input/dest.portal.toml
       ONTOP_CORS_ALLOWED_ORIGINS: "*"
       ONTOP_DEV_MODE: "true"
