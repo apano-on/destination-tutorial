@@ -1,6 +1,6 @@
 CREATE SCHEMA if not exists source1;
 
-DROP TEMPORARY VIEW IF EXISTS jdbcTable;
+DROP VIEW IF EXISTS jdbcTable;
 CREATE TEMPORARY VIEW jdbcTable
  USING org.apache.spark.sql.jdbc
  OPTIONS (
@@ -21,8 +21,7 @@ CREATE TABLE source1.municipalities(
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL,
     altitude DOUBLE NOT NULL,
-    geometryPoint STRING,
-    istat STRING
+    geometryPoint STRING
     );
 
 INSERT INTO TABLE source1.municipalities
