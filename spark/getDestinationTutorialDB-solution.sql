@@ -39,7 +39,7 @@ CREATE TEMPORARY VIEW jdbcTable
    password 'postgres2'
  );
 CREATE TABLE source1.hospitality (
-                                     h_id STRING PRIMARY KEY,
+                                     h_id STRING NOT NULL,
                                      name_en STRING NOT NULL,
                                      name_it STRING,
                                      name_de STRING NOT NULL,
@@ -69,7 +69,7 @@ CREATE TEMPORARY VIEW jdbcTable
    password 'postgres2'
  );
 CREATE TABLE source1.rooms (
-                               r_id STRING PRIMARY KEY,
+                               r_id STRING NOT NULL,
                                name_en STRING NOT NULL,
                                name_de STRING NOT NULL,
                                name_it STRING NOT NULL,
