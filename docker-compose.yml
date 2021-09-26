@@ -24,15 +24,17 @@ services:
       - "10000:10000"  # ThriftServer JDBC endpoint
     depends_on:
       - db
-#    volumes:
-#      - ./wait-for-it:/opt/wait-for-it
-#    entrypoint:
-#      [
-#          "/opt/wait-for-it/wait-for-it.sh",
-#          "db:5432",
-#          "--timeout=0",
-#          "--strict",
-#      ]
+    volumes:
+      - ./wait-for-it:/opt/wait-for-it
+    entrypoint:
+        [
+          "/opt/wait-for-it/wait-for-it.sh",
+          "db:5432",
+          "--timeout=0",
+          "--strict",
+          "--",
+          "/home/start.sh",
+        ]
 
   ontop:
     image: ontop/ontop-endpoint:4.2-SNAPSHOT

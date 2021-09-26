@@ -37,11 +37,9 @@ COPY spark-defaults.conf /opt/spark/conf/spark-defaults.conf
 # Not a good solution since we currently duplicate the jar
 COPY postgresql-42.2.8.jar /opt/spark/jars/postgresql-42.2.8.jar
 
-RUN mkdir /opt/wait-for-it
-COPY wait-for-it/wait-for-it.sh /opt/wait-for-it/wait-for-it.sh
-
 EXPOSE 8050
 EXPOSE 8051
 EXPOSE 10000
 
-CMD [ "./start.sh" ]
+# Use wait-for-it in docker-compose instead
+#CMD [ "./start.sh" ]
