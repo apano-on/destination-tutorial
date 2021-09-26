@@ -2,7 +2,7 @@
   "relations": [
     {
       "name": ["`ontopview`", "`source1_hospitality`"],
-      "baseRelation": ["`source1`", "`municipalities`"],
+      "baseRelation": ["`source1`", "`hospitality`"],
       "filterExpression": "",
       "columns": {
         "added": [],
@@ -101,8 +101,8 @@
       "type": "BasicViewDefinition"
     },
     {
-      "name": ["`ontopview`", "`source2_accomodation`"],
-      "baseRelation": ["`source2`", "`accomodation`"],
+      "name": ["`ontopview`", "`source2_accommodation`"],
+      "baseRelation": ["`source2`", "`accommodation`"],
       "filterExpression": "",
       "columns": {
         "added": [],
@@ -111,7 +111,7 @@
       "uniqueConstraints": {
         "added": [
           {
-            "name": "`source2_accomodation_pk`",
+            "name": "`source2_accommodation_pk`",
             "determinants": ["`id`"],
             "isPrimaryKey": true
           }
