@@ -1,6 +1,8 @@
 CREATE SCHEMA if not exists source1;
 
 DROP VIEW IF EXISTS jdbcTable;
+-- We might consider letting Spark infer the schema and save some time
+--CREATE TABLE source1.municipalities
 CREATE TEMPORARY VIEW jdbcTable
  USING org.apache.spark.sql.jdbc
  OPTIONS (

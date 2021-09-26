@@ -1,0 +1,204 @@
+{
+  "relations": [
+    {
+      "name": ["`ontopview`", "`source1_hospitality`"],
+      "baseRelation": ["`source1`", "`municipalities`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source1_hospitality_pk`",
+            "determinants": ["`h_id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source1_municipalities`"],
+      "baseRelation": ["`source1`", "`municipalities`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source1_municipalities_pk`",
+            "determinants": ["`m_id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source1_rooms`"],
+      "baseRelation": ["`source1`", "`rooms`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source1_rooms_pk`",
+            "determinants": ["`r_id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source2_hotels`"],
+      "baseRelation": ["`source2`", "`hotels`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source2_hotels_pk`",
+            "determinants": ["`id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source2_accomodation`"],
+      "baseRelation": ["`source2`", "`accomodation`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source2_accomodation_pk`",
+            "determinants": ["`id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source3_weather_platforms`"],
+      "baseRelation": ["`source3`", "`weather_platforms`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source3_weather_platforms_pk`",
+            "determinants": ["`id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source3_measurement_types`"],
+      "baseRelation": ["`source3`", "`measurement_types`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source3_measurement_types_pk`",
+            "determinants": ["`name`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    },
+    {
+      "name": ["`ontopview`", "`source3_weather_measurement`"],
+      "baseRelation": ["`source3`", "`weather_measurement`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source3_weather_measurement_pk`",
+            "determinants": ["`id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    }
+  ]
+}

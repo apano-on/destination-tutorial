@@ -1,0 +1,29 @@
+{
+  "relations": [
+    {
+      "name": ["`ontopview`", "`source1_municipalities`"],
+      "baseRelation": ["`source1`", "`municipalities`"],
+      "filterExpression": "",
+      "columns": {
+        "added": [],
+        "hidden": []
+      },
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "`source1_municipalities_pk`",
+            "determinants": ["`m_id`"],
+            "isPrimaryKey": true
+          }
+        ]
+      },
+      "otherFunctionalDependencies": {
+        "added": []
+      },
+      "foreignKeys": {
+        "added": []
+      },
+      "type": "BasicViewDefinition"
+    }
+  ]
+}

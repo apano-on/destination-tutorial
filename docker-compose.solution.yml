@@ -41,8 +41,9 @@ services:
     environment:
       ONTOP_ONTOLOGY_FILE: /opt/ontop/input/dest-solution.ttl
       ONTOP_XML_CATALOG_FILE: /opt/ontop/input/catalog-v001.xml
-      ONTOP_MAPPING_FILE: /opt/ontop/input/dest-solution.obda
+      ONTOP_MAPPING_FILE: /opt/ontop/input/dest-solution-spark.obda
       ONTOP_PROPERTIES_FILE: /opt/ontop/input/dest-spark.docker.properties
+      ONTOP_VIEW_FILE: /opt/ontop/input/dest-solution-spark-views.json
       ONTOP_PORTAL_FILE: /opt/ontop/input/dest.portal.toml
       ONTOP_CORS_ALLOWED_ORIGINS: "*"
       ONTOP_DEV_MODE: "true"

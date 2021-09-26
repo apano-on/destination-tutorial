@@ -1,7 +1,7 @@
 FROM debian
 
 RUN apt update
-RUN apt install wget default-jdk scala git python3 -y
+RUN apt install wget default-jdk git python3 -y
 RUN apt-get install -y curl
 
 WORKDIR /tmp
@@ -20,6 +20,7 @@ WORKDIR /home
 
 COPY start.sh start.sh
 COPY getDestinationTutorialDB.sql getDestinationTutorialDB.sql
+COPY getDestinationTutorialDB-solution.sql getDestinationTutorialDB-solution.sql
 
 RUN chmod +x start.sh
 
@@ -32,6 +33,8 @@ wget "https://search.maven.org/remotecontent?filepath=org/datasyslab/geotools-wr
 #COPY sedona-viz-3.0_2.12-1.0.1-incubating.jar /opt/spark/jars/sedona-viz-3.0_2.12-1.0.1-incubating.jar
 #COPY geotools-wrapper-geotools-24.0.jar /opt/spark/jars/geotools-wrapper-geotools-24.0.jar
 COPY spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+
+# Not a good solution since we currently duplicate the jar
 COPY postgresql-42.2.8.jar /opt/spark/jars/postgresql-42.2.8.jar
 
 RUN mkdir /opt/wait-for-it

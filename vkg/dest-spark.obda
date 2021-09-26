@@ -23,6 +23,6 @@ qudt-1-1-unit:	http://qudt.org/1.1/vocab/unit#
 [MappingDeclaration] @collection [[
 mappingId	Municipality
 target		data:municipality/{istat} a :Municipality ; schema:name {name_it}@it , {name_de}@de , {name_en}@en ; geo:defaultGeometry data:geo/municipality/{istat} ; schema:geo data:geo/municipality/{istat} .
-source		SELECT * FROM source1.municipalities
+source		SELECT * FROM ontopview.source1_municipalities
 
 ]]
