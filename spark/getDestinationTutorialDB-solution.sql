@@ -11,6 +11,7 @@ CREATE TEMPORARY VIEW jdbcTable
    password 'postgres2'
  );
 
+
 CREATE TABLE source1.municipalities(
                                        m_id STRING NOT NULL,
                                        istat STRING NOT NULL,
@@ -54,7 +55,7 @@ CREATE TABLE source1.hospitality (
                                      m_id STRING NOT NULL
 );
 
-INSERT INTO TABLE source1.municipalities
+INSERT INTO TABLE source1.hospitality
 SELECT * FROM jdbcTable;
 
 
@@ -123,7 +124,7 @@ CREATE TEMPORARY VIEW jdbcTable
  OPTIONS (
    driver "org.postgresql.Driver",
    url "jdbc:postgresql://db:5432/",
-   dbtable "source2.accomodation",
+   dbtable "source2.accommodation",
    user 'postgres',
    password 'postgres2'
  );
@@ -139,7 +140,7 @@ CREATE TABLE source2.accommodation (
                                        hotel STRING NOT NULL
 );
 
-INSERT INTO TABLE source2.accomodation
+INSERT INTO TABLE source2.accommodation
 SELECT * FROM jdbcTable;
 
 
@@ -198,9 +199,9 @@ CREATE TEMPORARY VIEW jdbcTable
  );
 CREATE TABLE source3.weather_measurement (
                                              id BIGINT NOT NULL,
-                                             "period" INTEGER NOT NULL,
-                                             "timestamp" timestamp NOT NULL,
-                                             "name" STRING NOT NULL,
+                                             `period` INTEGER NOT NULL,
+                                             `timestamp` timestamp NOT NULL,
+                                             `name` STRING NOT NULL,
                                              double_value DOUBLE NOT NULL,
                                              platform_id BIGINT NOT NULL
 );
