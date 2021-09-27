@@ -27,7 +27,7 @@ source		SELECT * FROM ontopview.source1_municipalities
 
 mappingId	Municipality geo
 target		data:geo/municipality/{istat} a schema:GeoCoordinates ; schema:longitude {longitude} ; schema:latitude {latitude} ; schema:elevation {altitude} ; geo:asWKT {wkt}^^geo:wktLiteral .
-source		SELECT *, ST_AsText(geometrypoint) AS wkt FROM ontopview.source1_municipalities
+source		SELECT *, ST_GEOMFROMWKB(geometrypoint) AS wkt FROM ontopview.source1_municipalities
 
 mappingId	Source 1 - lodging business
 target		data:source1/hospitality/{h_id} a schema:LodgingBusiness ; schema:name {name_en}@en , {name_it}@it , {name_de}@de ; schema:telephone {telephone} ; schema:email {email} ; geo:defaultGeometry data:source1/geo/hospitality/{h_id} ; schema:geo data:source1/geo/hospitality/{h_id} .
@@ -40,7 +40,7 @@ source		SELECT h.h_id, m.istat FROM ontopview.source1_hospitality h, ontopview.s
 
 mappingId	Source 1 - lodging business geo
 target		data:source1/geo/hospitality/{h_id} a schema:GeoCoordinates ; schema:longitude {longitude} ; schema:latitude {latitude} ; schema:elevation {altitude} ; geo:asWKT {wkt}^^geo:wktLiteral .
-source		SELECT *, ST_AsText(geometrypoint) AS wkt FROM ontopview.source1_hospitality
+source		SELECT *, ST_GEOMFROMWKB(geometrypoint) AS wkt FROM ontopview.source1_hospitality
 
 mappingId	Source 1 - hotel
 target		data:source1/hospitality/{h_id} a schema:Hotel .
@@ -91,7 +91,7 @@ source		SELECT * FROM ontopview.source2_hotels
 
 mappingId	Source 2 lodging business geo
 target		data:source2/geo/hotels/{id} a schema:GeoCoordinates ; schema:longitude {long} ; schema:latitude {lat} ; schema:elevation {alt} ; geo:asWKT {wkt}^^geo:wktLiteral .
-source		SELECT *, ST_AsText(geom) AS wkt FROM source2.hotels
+source		SELECT *, ST_GEOMFROMWKB(geom) AS wkt FROM source2.hotels
 
 mappingId	Source 2 - hotel
 target		data:source2/hotels/{id} a schema:Hotel .
@@ -137,7 +137,7 @@ source		select * from ontopview.source3_weather_platforms
 
 mappingId	Platform geo
 target		data:geo/weather/platform/{id} geo:asWKT {wkt}^^geo:wktLiteral .
-source		select *, st_AsText(pointprojection) AS wkt from ontopview.source3_weather_platforms
+source		select *, ST_GEOMFROMWKB(pointprojection) AS wkt from ontopview.source3_weather_platforms
 
 mappingId	Observation
 target		data:weather/observation/{id} a sosa:Observation ; sosa:resultTime {timestamp} ; sosa:madeBySensor data:weather/sensor/{name}/{platform_id} ; sosa:observedProperty data:measurement/property/{name} ; sosa:hasResult data:weather/observation/result/{id} .

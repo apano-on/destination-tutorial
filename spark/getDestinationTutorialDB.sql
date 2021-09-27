@@ -29,4 +29,10 @@ CREATE TABLE source1.municipalities(
 INSERT INTO TABLE source1.municipalities
 SELECT * FROM jdbcTable;
 
-
+-- Approach fails because sedona functions are temporary
+-- But temporary tables cannot be persisted, it seems the spark shell session
+-- ends once we run the thriftserver, therefore we no longer have any access
+--CREATE TEMPORARY VIEW municipalities AS
+--SELECT *,
+--       ST_GEOMFROMWKB(geometryPoint) As geom
+--FROM source1.municipalities;
