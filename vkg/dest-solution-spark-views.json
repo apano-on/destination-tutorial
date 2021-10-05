@@ -21,7 +21,16 @@
         "added": []
       },
       "foreignKeys": {
-        "added": []
+        "added": [
+          {
+            "name": "fk_hospitality",
+            "from": "\"m_id\"",
+            "to": {
+              "columns": ["\"m_id\""],
+              "relation": ["`ontopview`", "`source1_municipalities`"]
+            }
+          }
+        ]
       },
       "type": "BasicViewDefinition"
     },
@@ -55,7 +64,16 @@
       "baseRelation": ["`source1`", "`rooms`"],
       "filterExpression": "",
       "columns": {
-        "added": [],
+        "added": [
+          {
+            "name": "fk_rooms",
+            "from": "\"h_id\"",
+            "to": {
+              "columns": ["\"h_id\""],
+              "relation": ["`ontopview`", "`source1_hospitality`"]
+            }
+          }
+        ],
         "hidden": []
       },
       "uniqueConstraints": {
@@ -196,7 +214,24 @@
         "added": []
       },
       "foreignKeys": {
-        "added": []
+        "added": [
+          {
+            "name": "fk_measurement_station_id_station_pk",
+            "from": "\"platform_id\"",
+            "to": {
+              "columns": ["\"id\""],
+              "relation": ["`ontopview`", "`source3_weather_platforms`"]
+            }
+          },
+          {
+            "name": "fk_measurement_type",
+            "from": "\"name\"",
+            "to": {
+              "columns": ["\"name\""],
+              "relation": ["`ontopview`", "`source3_measurement_types`"]
+            }
+          }
+        ]
       },
       "type": "BasicViewDefinition"
     }
