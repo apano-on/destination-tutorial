@@ -23,11 +23,23 @@ This command starts and initializes the database, spark and ontop. Once the data
 
 For this tutorial, we assume that the ports 7777 (used for database), 8050/8051/7077/10000 (used by Spark) and 8080 (used by Ontop) are free. If you need to use different ports, please edit the file `.env`.
 
+### Optional: visualize it in DBeaver (TO BE TESTED FOR SPARK)
+To visualize the dataset in DBeaver or a similar tool, we need to create a database connection. In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *PostgreSQL*
+
+The credentials to access the PostgreSQL database are the followings:
+ - Host: *localhost*
+ - Port: 7777
+ - User: *postgres*
+ - Password: *postgres2*
+
+In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *Apache Spark*. The credentials to access the Spark SQL database are the followings:
+ - Host: *localhost*
+ - Port: 10000
+ - User: **
+ - Password: **
 
 
-
-
-
+----------------------------------------------------------------------------
 
 
 
