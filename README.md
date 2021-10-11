@@ -1,66 +1,3 @@
-# NEW Destination tutorial for Ontop + Spark
-## 1. Clone this repository
-
-On Windows
-```sh
-git clone https://github.com/ontopic-vkg/destination-tutorial  --config core.autocrlf=input
-```
-
-Otherwise, on MacOS and Linux:
-```sh
-git clone https://github.com/ontopic-vkg/destination-tutorial
-```
-## 2. Start Docker-compose
-
-* Go to the `destination-tutorial` repository
-* Start the default docker-compose services
-
-```sh
-docker-compose up
-```
-
-This command starts and initializes the database, spark and ontop. Once the database is ready, it loads the data to Spark, and then it launches the SPARQL endpoint from Ontop at http://localhost:8080.
-
-For this tutorial, we assume that the ports 7777 (used for database), 8050/8051/7077/10000 (used by Spark) and 8080 (used by Ontop) are free. If you need to use different ports, please edit the file `.env`.
-
-### Optional: visualize it in DBeaver (TO BE TESTED FOR SPARK)
-To visualize the dataset in DBeaver or a similar tool, we need to create a database connection. In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *PostgreSQL*
-
-The credentials to access the PostgreSQL database are the followings:
- - Host: *localhost*
- - Port: 7777
- - User: *postgres*
- - Password: *postgres2*
-
-In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *Apache Spark*. The credentials to access the Spark SQL database are the followings:
- - Host: *localhost*
- - Port: 10000
- - User: **
- - Password: **
-
-
-----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Destination tutorial for Ontop
 
 This tutorial is adapted from [the Virtual Knowledge Graph](https://github.com/noi-techpark/it.bz.opendatahub.sparql) of the South Tyrolean [Open Data Hub](https://opendatahub.bz.it/).
@@ -73,7 +10,7 @@ The video of the tutorial is available [here](https://knowledgegraphconference.v
 
 ## Requirements
  - [Docker](https://www.docker.com/)
- - Protégé 5.5 with the Ontop 4.1.0 plugin installed. A bundle is available [here](https://sourceforge.net/projects/ontop4obda/files/ontop-4.1.0/).
+ - Protégé 5.5 with the Ontop 4.2.0 plugin installed. A bundle is available [here](https://sourceforge.net/projects/ontop4obda/files/ontop-4.2.0/).
  - Optionally [DBeaver](https://dbeaver.io/) or another database tool for visualizing the data source.
 
 ## Clone this repository
@@ -104,7 +41,7 @@ git clone https://github.com/ontopic-vkg/destination-tutorial
    * Description: *postgresql*
    * Class Name: *org.postgresql.Driver*
    * Driver file (jar): */path/to/destination-tutorial/jdbc/postgresql-42.2.8.jar*
-* Go to *Reasoner* and select *Ontop 4.1.0* .
+* Go to *Reasoner* and select *Ontop 4.2.0* .
 
 ## Start Docker-compose
 
@@ -115,9 +52,9 @@ git clone https://github.com/ontopic-vkg/destination-tutorial
 docker-compose pull && docker-compose up
 ```
 
-This command starts and initializes the database. Once the database is ready, it launches the SPARQL endpoint from Ontop at http://localhost:8080 .
+This command starts and initializes the database, spark and ontop. Once the database is ready, it loads the data to Spark, and then it launches the SPARQL endpoint from Ontop at http://localhost:8080.
 
-For this tutorial, we assume that the ports 7777 (used for database) and 8080 (used by Ontop) are free. If you need to use different ports, please edit the file `.env`.
+For this tutorial, we assume that the ports 7777 (used for database), 8050/8051/7077/10000 (used by Spark) and 8080 (used by Ontop) are free. If you need to use different ports, please edit the file `.env`.
 
 
 ## Dataset
@@ -234,8 +171,15 @@ The table `source3.measurement_types` contains the name, unit, description and s
 |umidita_rel|	[%] |	Umidità relativa dell’aria |	Mean |
 |umidita_abs|	[g/m^3]|	Umidità assoluta dell’aria |	Mean |
 
+### Add primary and foreign key information for Apache Spark
+Apache Spark is not an RDBMS but rather a data processing pipeline, hence it does not store any information on primary and foreign keys. However, these keys are crucial to Ontop in order to optimize query performance. Since Ontop cannot get this information from Spark, we need to manually provide it through a feature called Ontop Views which was developed for this specific purpose.
+
+Ontop views are JSON files which not only add constraints but can also be used to add columns or even rename relations/tables. Ontop permits us to download a database's metadata i.e. PostgreSQL constraints, and add it back to Ontop. Since using Ontop Views and metadata extraction is not the main focus of this tutorial, we provide you with the completed view file: `spark/dest-solution-spark-views.json`. However, feel free to experiment further with these options which can also be found on our docker page https://hub.docker.com/r/ontop/ontop-endpoint under ONTOP_DB_METADATA_FILE (to extract constraint from PostgreSQL) and ONTOP_VIEW_FILE (to add the constraints back to Ontop since Apache Spark does not store this information). 
+
+For this tutorial add the following file to your docker compose file: `ONTOP_VIEW_FILE = spark/dest-solution-spark-views.json`
+
 ### Optional: visualize it in DBeaver
-To visualize the dataset in DBeaver or a similar tool, we need to create a database connection. In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *PostgreSQL*
+To visualize the dataset in DBeaver or a similar tool, we need to create a database connection which can be done with either PostgreSQL or Apache Spark. In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *PostgreSQL*
 
 The credentials to access the PostgreSQL database are the followings:
  - Host: *localhost*
@@ -243,6 +187,11 @@ The credentials to access the PostgreSQL database are the followings:
  - User: *postgres*
  - Password: *postgres2*
 
+Alternatively, to connect to Spark follow the next steps:  *Database* -> *New Database Connection* -> *Apache Spark*. The credentials to access the Spark SQL database are the following:
+ - Host: *localhost*
+ - Port: 10000
+ - User: **
+ - Password: **
 
 ## Mapping
 
@@ -282,7 +231,7 @@ Then, specify the file by using *-f* :
 docker-compose -f docker-compose.solution.yml up
 ```
 
-This Docker-compose file uses the mapping `vkg/dest-solution.obda`.
+This Docker-compose file uses the mapping `vkg/dest-solution-spark.obda`.
 
 You can see it in Protégé by opening the ontology `vkg/dest-solution.ttl` in a different window.
 
