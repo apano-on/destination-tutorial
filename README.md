@@ -1,25 +1,3 @@
-
-### Optional: visualize it in DBeaver (TO BE TESTED FOR SPARK)
-To visualize the dataset in DBeaver or a similar tool, we need to create a database connection. In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *PostgreSQL*
-
-The credentials to access the PostgreSQL database are the followings:
- - Host: *localhost*
- - Port: 7777
- - User: *postgres*
- - Password: *postgres2*
-
-In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *Apache Spark*. The credentials to access the Spark SQL database are the following:
- - Host: *localhost*
- - Port: 10000
- - User: **
- - Password: **
-
-
-----------------------------------------------------------------------------
-
-
-
-
 # Destination tutorial for Ontop
 
 This tutorial is adapted from [the Virtual Knowledge Graph](https://github.com/noi-techpark/it.bz.opendatahub.sparql) of the South Tyrolean [Open Data Hub](https://opendatahub.bz.it/).
@@ -32,7 +10,7 @@ The video of the tutorial is available [here](https://knowledgegraphconference.v
 
 ## Requirements
  - [Docker](https://www.docker.com/)
- - Protégé 5.5 with the Ontop 4.1.0 plugin installed. A bundle is available [here](https://sourceforge.net/projects/ontop4obda/files/ontop-4.1.0/).
+ - Protégé 5.5 with the Ontop 4.2.0 plugin installed. A bundle is available [here](https://sourceforge.net/projects/ontop4obda/files/ontop-4.2.0/).
  - Optionally [DBeaver](https://dbeaver.io/) or another database tool for visualizing the data source.
 
 ## Clone this repository
@@ -192,6 +170,13 @@ The table `source3.measurement_types` contains the name, unit, description and s
 |temp_aria |	[°C] |	Temperatura dell’aria |	Mean |
 |umidita_rel|	[%] |	Umidità relativa dell’aria |	Mean |
 |umidita_abs|	[g/m^3]|	Umidità assoluta dell’aria |	Mean |
+
+### Add primary and foreign key information for Apache Spark
+Apache Spark is not an RDBMS but rather a data processing pipeline, hence it does not store any information on primary and foreign keys. However, these keys are crucial to Ontop in order to optimize query performance. Since Ontop cannot get this information from Spark, we need to manually provide it through a feature called Ontop Views which was developed for this specific purpose.
+
+Ontop views are JSON files which not only add constraints but can also be used to add columns or even rename relations/tables. Ontop permits us to download a database's metadata i.e. PostgreSQL constraints, and add it back to Ontop. Since using Ontop Views and metadata extraction is not the main focus of this tutorial, we provide you with the completed view file: `spark/dest-solution-spark-views.json`. However, feel free to experiment further with these options which can also be found on our docker page https://hub.docker.com/r/ontop/ontop-endpoint under ONTOP_DB_METADATA_FILE (to extract constraint from PostgreSQL) and ONTOP_VIEW_FILE (to add the constraints back to Ontop since Apache Spark does not store this information). 
+
+For this tutorial add the following file to your docker compose file: `ONTOP_VIEW_FILE = spark/dest-solution-spark-views.json`
 
 ### Optional: visualize it in DBeaver
 To visualize the dataset in DBeaver or a similar tool, we need to create a database connection which can be done with either PostgreSQL or Apache Spark. In DBeaver, one can follow the next steps:  *Database* -> *New Database Connection* -> *PostgreSQL*
