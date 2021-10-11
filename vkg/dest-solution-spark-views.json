@@ -64,16 +64,7 @@
       "baseRelation": ["`source1`", "`rooms`"],
       "filterExpression": "",
       "columns": {
-        "added": [
-          {
-            "name": "fk_rooms",
-            "from": "\"h_id\"",
-            "to": {
-              "columns": ["\"h_id\""],
-              "relation": ["`ontopview`", "`source1_hospitality`"]
-            }
-          }
-        ],
+        "added": [],
         "hidden": []
       },
       "uniqueConstraints": {
@@ -89,7 +80,16 @@
         "added": []
       },
       "foreignKeys": {
-        "added": []
+        "added": [
+          {
+            "name": "fk_rooms",
+            "from": "\"h_id\"",
+            "to": {
+              "columns": ["\"h_id\""],
+              "relation": ["`ontopview`", "`source1_hospitality`"]
+            }
+          }
+        ]
       },
       "type": "BasicViewDefinition"
     },
