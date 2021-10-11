@@ -210,3 +210,14 @@ INSERT INTO TABLE source3.weather_measurement
 SELECT * FROM jdbcTable;
 
 DROP VIEW IF EXISTS jdbcTable;
+
+-- To maintain the statistics up-to-date, run ANALYZE TABLE after writing to the table.
+-- The statistics/metadata info can be used by the cost optimizer
+ANALYZE TABLE source1.municipalities COMPUTE STATISTICS;
+ANALYZE TABLE source1.hospitality COMPUTE STATISTICS;
+ANALYZE TABLE source1.rooms COMPUTE STATISTICS;
+ANALYZE TABLE source2.hotels COMPUTE STATISTICS;
+ANALYZE TABLE source2.accomodation COMPUTE STATISTICS;
+ANALYZE TABLE source3.weather_platforms COMPUTE STATISTICS;
+ANALYZE TABLE source3.measurement_types COMPUTE STATISTICS;
+ANALYZE TABLE source3.weather_measurement COMPUTE STATISTICS;
