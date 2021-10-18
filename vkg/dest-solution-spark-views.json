@@ -34,7 +34,13 @@
         "hidden": []
       },
       "uniqueConstraints": {
-        "added": []
+        "added": [
+          {
+            "name": "`source1_municipalities_pk`",
+            "determinants": ["`m_id`"],
+            "isPrimaryKey": true
+          }
+        ]
       },
       "otherFunctionalDependencies": {
         "added": []
