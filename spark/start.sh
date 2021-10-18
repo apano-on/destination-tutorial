@@ -23,8 +23,8 @@ spark-sql \
 	--name SPARKSQL-INSERTIONS \
 	--master spark://localhost:7077 \
 	--deploy-mode client  \
-	-f ./getDestinationTutorialDB.sql
-	# -f ./getDestinationTutorialDB-solution.sql
+	-f ./getDestinationTutorialDB-solution.sql
+	#-f ./getDestinationTutorialDB.sql
 
 start-thriftserver.sh \
 	--name THRIFTSERVER \
